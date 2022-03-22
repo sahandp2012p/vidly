@@ -11,19 +11,18 @@ export function getMovie(movieId) {
 	return http.get(apiEndpoint + '/' + movieId);
 }
 
-export async function saveMovie(movie) {
+export function saveMovie(movie) {
 	if (movie._id) {
 		const body = { ...movie };
 		delete body._id;
 
-		await http.put(apiEndpoint + '/' + movie._id, body);
-
 		return http.put(apiEndpoint + '/' + movie._id, body);
 	}
 
-	await http.post(apiEndpoint, movie);
+	const body = { ...movie };
+	delete body._id;
 
-	return http.post(apiEndpoint, movie);
+	return http.post(apiEndpoint, body);
 }
 
 export async function deleteMovie(movieId) {

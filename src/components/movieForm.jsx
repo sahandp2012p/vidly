@@ -2,13 +2,13 @@ import React from 'react';
 import { getMovie, saveMovie } from '../services/movieService';
 import Form from './common/form';
 import Joi from 'joi-browser';
-import { getGenres } from './../services/genreService';
+import { getGenres } from '../services/genreService';
 
 class MovieForm extends Form {
-	doSubmit = async () => {
-		await saveMovie(this.mapToViewModel(this.state.data));
+	doSubmit = () => {
+		saveMovie(this.mapToViewModel(this.state.data));
 
-		this.props.history.push('/movies/');
+		this.props.history.replace('/movies');
 	};
 
 	state = {

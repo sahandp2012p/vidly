@@ -20,6 +20,8 @@ class Movie extends Component {
 	};
 
 	async componentDidMount() {
+		this.props.history.push('/movies/');
+
 		const { data } = await getGenres();
 		const genres = [ { _id: '', name: 'All Genres' }, ...data ];
 
@@ -82,6 +84,8 @@ class Movie extends Component {
 
 		const { totalCount, data: movies } = this.getPagedData();
 
+		const { user } = this.props;
+
 		return (
 			<div className="row">
 				<div className="col-2">
@@ -92,9 +96,11 @@ class Movie extends Component {
 					/>
 				</div>
 				<div className="col">
-					<Link to="/movies/new" className="btn btn-primary btn-sm mb-4">
-						New Movie
-					</Link>
+					{user && (
+						<Link to="/movies/new" className="btn btn-primary btn-sm mb-4">
+							New Movie
+						</Link>
+					)}
 
 					{totalCount > 0 ? (
 						<p>{`Showing ${totalCount} movies in the database`}</p>
