@@ -102,11 +102,7 @@ class Movie extends Component {
 						</Link>
 					)}
 
-					{totalCount > 0 ? (
-						<p>{`Showing ${totalCount} movies in the database`}</p>
-					) : (
-						'There are no movies in the database'
-					)}
+					<p>{`Showing ${totalCount} movies in the database`}</p>
 
 					<SearchBox value={searchQuery} onChange={this.handleSearch} />
 
